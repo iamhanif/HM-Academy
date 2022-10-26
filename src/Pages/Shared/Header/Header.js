@@ -2,14 +2,14 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import { Link } from 'react-router-dom';
 import SideNave from '../SideNav/SideNave';
 
 const Header = () => {
     return (
         <Navbar collapseOnSelect className='mb-3' expand="lg" bg="light" variant="light">
             <Container>
-                <Navbar.Brand href="#home">MH Academy </Navbar.Brand>
+                <Navbar.Brand> <Link to={'/'}>HM Academy</Link> </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
