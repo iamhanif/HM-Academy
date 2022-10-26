@@ -1,5 +1,6 @@
 import React from 'react';
 import { useContext } from 'react';
+import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -8,7 +9,13 @@ import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 import SideNave from '../SideNav/SideNave';
 
 const Header = () => {
-    const { user } = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.error(error))
+    }
 
     return (
         <Navbar collapseOnSelect className='mb-3' expand="lg" bg="light" variant="light">
@@ -24,7 +31,22 @@ const Header = () => {
 
                     </Nav>
                     <Nav>
-                        <Nav.Link href="#deets">{user?.displayName}</Nav.Link>
+                        <Nav.Link href="#deets">
+                            {
+                                user?.uid ?
+                                    <>
+                                        <span className='me-2'> {user?.displayName} </span>
+                                        <Button variant="light" onClick={handleLogOut}>Log out </Button>
+                                    </>
+                                    :
+                                    <>
+                                        <Link className='me-2' to={'/login'}>Login</Link>
+                                        <Link to={'/register'}>Register</Link>
+                                    </>
+                            }
+
+
+                        </Nav.Link>
                         <Nav.Link eventKey={2} href="#memes">
                             Dank memes
                         </Nav.Link>

@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { getAuth, signInWithPopup } from 'firebase/auth';
+import { getAuth, signInWithPopup, signOut } from 'firebase/auth';
 import app from '../../firebase/firebase.config';
 
 export const AuthContext = createContext()
@@ -9,10 +9,14 @@ const providerLogin = (provider) => {
     return signInWithPopup(auth, provider)
 }
 
+const logOut = () => {
+    return signOut(auth)
+}
+
 const AuthProvider = ({ children }) => {
     const user = { displayName: 'Hanif' }
 
-    const authInfo = { user, providerLogin }
+    const authInfo = { user, providerLogin, logOut }
 
     return (
         <AuthContext.Provider value={authInfo}>
