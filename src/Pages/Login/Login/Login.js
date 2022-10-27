@@ -2,7 +2,7 @@ import React from 'react';
 import { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 import { FaGoogle, FaGithub } from 'react-icons/fa';
 import { GoogleAuthProvider } from 'firebase/auth';
@@ -13,6 +13,9 @@ const Login = () => {
 
     const { signIn, providerLogin } = useContext(AuthContext)
     const navigate = useNavigate()
+    const location = useLocation()
+
+    const from = location.state?.from?.pathname || '/'
 
     const googleProvider = () => new GoogleAuthProvider()
 
@@ -37,7 +40,7 @@ const Login = () => {
                 console.log(user)
                 form.reset()
                 setError('')
-                navigate('/')
+                navigate(from, { replace: true })
             })
             .catch(e => {
                 console.error(e)
