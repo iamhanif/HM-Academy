@@ -7,17 +7,17 @@ const SideNave = () => {
     const [courses, setCourses] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/courses')
+        fetch('http://localhost:5000/courseDetails/')
             .then(res => res.json())
             .then(data => setCourses(data))
     }, [])
     return (
         <div>
-            <h3>All Courses: {courses.length}</h3>
+            <h3>All Courses</h3>
             <div>
                 {
-                    courses.map(course => <p key={course.id}>
-                        <Link to={`/courses/${course.id}`}>{course.name}</Link>
+                    courses.map(course => <p key={course._id}>
+                        <Link to={`/coursesDetails/${course._id}`}>{course.title}</Link>
                     </p>)
                 }
             </div>

@@ -4,29 +4,17 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
-import { FaGoogle, FaGithub } from 'react-icons/fa';
-import { GoogleAuthProvider } from 'firebase/auth';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 const Login = () => {
     const [error, setError] = useState('')
 
-    const { signIn, providerLogin } = useContext(AuthContext)
+    const { signIn, setLoading } = useContext(AuthContext)
     const navigate = useNavigate()
     const location = useLocation()
 
     const from = location.state?.from?.pathname || '/'
-
-    const googleProvider = () => new GoogleAuthProvider()
-
-    const handleGoogleSignIn = () => {
-        providerLogin(googleProvider)
-            .then(result => {
-                const user = result.user
-                console.log(user)
-            })
-            .catch(e => console.error(e))
-    }
 
     const handleSignIn = event => {
         event.preventDefault()
@@ -40,16 +28,24 @@ const Login = () => {
                 console.log(user)
                 form.reset()
                 setError('')
-                navigate(from, { replace: true })
+                if (user.emailVerified) {
+                    navigate(from, { replace: true })
+                }
+                else {
+                    toast.error('Your email is not verified')
+                }
             })
             .catch(e => {
                 console.error(e)
                 setError(e.message)
             })
+            .finally(() => {
+                setLoading(false)
+            })
     }
 
     return (
-        <Form className='w-50' onSubmit={handleSignIn}>
+        <Form onSubmit={handleSignIn}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control name='email' type="email" placeholder="Enter email" required />
@@ -60,9 +56,7 @@ const Login = () => {
                 <Form.Label>Password</Form.Label>
                 <Form.Control name='password' type="password" placeholder="Password" required />
             </Form.Group>
-            {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" label="Check me out" />
-            </Form.Group> */}
+
             <Form.Text className="text-danger d-block">
                 {error}
             </Form.Text>
@@ -71,11 +65,7 @@ const Login = () => {
                     Login
                 </Button>
             </div>
-            <div className='text-center'>
-                <p>or</p>
-                <Button onClick={handleGoogleSignIn} className='me-3' variant="outline-dark"> <FaGoogle /> Sign in with Google </Button>
-                <Button variant="outline-dark"> <FaGithub /> Sign in with Github </Button>
-            </div>
+
         </Form>
     );
 };

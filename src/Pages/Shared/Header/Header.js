@@ -22,14 +22,14 @@ const Header = () => {
     return (
         <Navbar collapseOnSelect className='mb-3' expand="lg" bg="light" variant="light">
             <Container>
-                <> <Link to={'/'}>HM Academy</Link> </>
+                <> <Link className=' me-3 text-decoration-none text-dark' to={'/'}>HM Academy</Link> </>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="me-auto">
-                        <Nav.Link href="#features">Our Courses</Nav.Link>
-                        <Nav.Link href="#pricing">Blog</Nav.Link>
-                        <Nav.Link href="#pricing">FAQ</Nav.Link>
-                        <Nav.Link href="#pricing">About us</Nav.Link>
+                    <Nav className="me-auto align-items-center">
+                        <Link className='me-3 text-decoration-none text-dark' to='/courses'>Our Courses</Link>
+                        <Link className='me-3 text-decoration-none text-dark' to='/blog'>Blog</Link>
+                        <Link className='me-3 text-decoration-none text-dark' to='/fag'>FAQ</Link>
+                        <Link className='me-3 text-decoration-none text-dark' to='/about'>About us</Link>
 
                     </Nav>
                     <Nav>
@@ -43,19 +43,19 @@ const Header = () => {
                                     :
                                     <>
                                         <Link className='me-2' to={'/login'}>Login</Link>
-                                        <Link to={'/register'}>Register</Link>
+                                        <Link className='me-2' to={'/register'}>Register</Link>
                                     </>
                             }
 
 
                         </>
-                        <Nav.Link eventKey={2} href="#memes">
+                        <Link to='/profile'>
                             {
                                 user?.photoURL ?
                                     <Image style={{ height: '30px' }} roundedCircle src={user.photoURL} />
                                     : <FaUser />
                             }
-                        </Nav.Link>
+                        </Link>
                     </Nav>
                     <div className='d-lg-none'>
                         <SideNave />
