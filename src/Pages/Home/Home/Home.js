@@ -1,9 +1,22 @@
 import React from 'react';
+import { useLoaderData } from 'react-router-dom';
+import SubjectsCard from '../../Shared/SubjectsCard/SubjectsCard';
+import './Home.css'
 
 const Home = () => {
+    const sub = useLoaderData()
     return (
         <div>
-            <h2>This is Home component </h2>
+            <div className='subjectCard'>
+                {
+                    sub.map(subject => <SubjectsCard
+                        key={subject._id}
+                        subject={subject}
+                    ></SubjectsCard>)
+                }
+
+            </div>
+
         </div>
     );
 };

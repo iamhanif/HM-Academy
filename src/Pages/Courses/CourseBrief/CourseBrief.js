@@ -1,13 +1,13 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
-import Home from '../../Home/Home/Home';
 
-const Courses = () => {
+const CourseBrief = () => {
+    const brief = useLoaderData()
     return (
         <div>
-            <Home></Home>
+            <p>{brief.description}</p>
         </div>
     );
 };
 
-export default Courses;
+export default CourseBrief;
