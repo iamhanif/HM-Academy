@@ -19,17 +19,17 @@ export const routes = createBrowserRouter([
             {
                 path: '/',
                 element: <Home />,
-                loader: () => fetch(`http://localhost:5000/courseDetails`)
+                loader: () => fetch(`https://hm-academy-server.vercel.app/courseDetails`)
             },
             {
                 path: '/courses',
                 element: <Courses />,
-                loader: () => fetch(`http://localhost:5000/courseDetails`)
+                loader: () => fetch(`https://hm-academy-server.vercel.app/courseDetails`)
             },
             {
                 path: '/coursesDetails/:id',
                 element: <PrivateRoute><CourseBrief /></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/courseDetails/${params.id}`)
+                loader: ({ params }) => fetch(`https://hm-academy-server.vercel.app/courseDetails/${params.id}`)
             },
             {
                 path: '/fag',

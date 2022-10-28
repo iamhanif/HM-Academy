@@ -7,7 +7,7 @@ const SideNave = () => {
     const [courses, setCourses] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/courseDetails/')
+        fetch('https://hm-academy-server.vercel.app/courseDetails/')
             .then(res => res.json())
             .then(data => setCourses(data))
     }, [])
