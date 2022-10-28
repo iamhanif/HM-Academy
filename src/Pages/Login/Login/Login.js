@@ -2,7 +2,7 @@ import React from 'react';
 import { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
@@ -64,6 +64,9 @@ const Login = () => {
                 <Button variant="primary" type="submit">
                     Login
                 </Button>
+            </div>
+            <div>
+                <Link to='/register'>Create a new account</Link>
             </div>
 
         </Form>
