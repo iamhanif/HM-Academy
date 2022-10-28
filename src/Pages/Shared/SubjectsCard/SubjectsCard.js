@@ -18,7 +18,7 @@ const SubjectsCard = ({ subject }) => {
                     <Button className='w-100' variant="outline-dark">
                         <Link className='text-decoration-none' to={`/coursesDetails/${_id}`}>Course Details</Link>
                     </Button>
-                    <Button className='mt-2 w-100' variant="outline-success">Get the course</Button>
+                    <Button className='mt-2 w-100' variant="outline-success">Get premium access</Button>
                 </Card.Body>
             </Card>
         </div>

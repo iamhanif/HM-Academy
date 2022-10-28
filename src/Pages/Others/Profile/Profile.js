@@ -1,8 +1,11 @@
 import React from 'react';
+import { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 
 const Profile = () => {
+    const { user } = useContext(AuthContext)
     return (
         <Form>
             <Form.Group className="mb-3" controlId="formBasicEmail">
