@@ -13,8 +13,12 @@ const Profile = () => {
         event.preventDefault()
     }
 
+    const handleNameChange = (event) => {
+        setName(event.target.value)
+    }
+
     return (
-        <Form>
+        <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control readOnly defaultValue={user?.email} type="email" placeholder="Enter email" />
@@ -22,7 +26,7 @@ const Profile = () => {
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Your Name</Form.Label>
-                <Form.Control defaultValue={user?.displayName} type="text" placeholder="Your Name" />
+                <Form.Control onChange={handleNameChange} defaultValue={name} type="text" placeholder="Your Name" />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPhotoURL">
